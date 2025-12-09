@@ -1,0 +1,73 @@
+---
+import Card from '../common/Card.astro';
+import Button from '../common/Button.astro';
+
+interface Props {
+  projects: any[];
+}
+
+const { projects } = Astro.props;
+---
+
+{projects.length > 0 && (
+  <section class="max-w-7xl mx-auto px-4 py-12 sm:py-20">
+    <div class="text-center mb-12 sm:mb-16 animate-fade-in-up">
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-4 text-gray-900 dark:text-white leading-[1.2]">
+        Vybrané projekty
+      </h2>
+      <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed animate-fade-in-up" style="animation-delay: 0.1s;">Nejnovější práce z mého portfolia</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      {projects.map((project, index) => (
+        <Card delay={index * 0.2}>
+          <!-- Image Placeholder -->
+          <div class="relative h-48 sm:h-56 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex items-center justify-center overflow-hidden">
+            <div class="text-6xl sm:text-7xl transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
+              {project.category === 'ecommerce' ? '🛍️' :
+               project.category === 'webapp' ? '⚡' :
+               project.category === 'mobile' ? '📱' : '🌐'}
+            </div>
+          </div>
+
+          <div class="relative z-20 p-6">
+            <!-- Category Badge -->
+            <div class="inline-block px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold rounded-full mb-3 transform group-hover:scale-110 transition-transform duration-300">
+              {project.category}
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 dark:group-hover:from-blue-400 dark:group-hover:to-purple-400 transition-all duration-300 leading-snug">
+              {project.title}
+            </h3>
+
+            <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 text-sm sm:text-base">
+              {project.description}
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              {project.technologies?.map(tech => (
+                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium hover:bg-gradient-to-r hover:from-purple-100 hover:to-pink-100 dark:hover:from-purple-900 dark:hover:to-pink-900 transition-all duration-300">
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <a
+              href={`/projekty/${project.slug.current}`}
+              class="inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold hover:gap-3 gap-2 transition-all duration-300 text-sm sm:text-base"
+            >
+              <span>Zobrazit detail</span>
+              <span class="transform group-hover:translate-x-2 transition-transform duration-300">→</span>
+            </a>
+          </div>
+        </Card>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <Button href="/projekty" icon="→">
+        Zobrazit všechny projekty
+      </Button>
+    </div>
+  </section>
+)}

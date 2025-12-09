@@ -1,0 +1,31 @@
+---
+interface Props {
+  href?: string;
+  animate?: boolean;
+  delay?: number;
+  className?: string;
+}
+
+const { href, animate = true, delay = 0, className = '' } = Astro.props;
+const animationClass = animate ? 'animate-fade-in-up' : '';
+const style = delay ? `animation-delay: ${delay}s;` : '';
+
+const classes = `group relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl
+  transition-all duration-500 hover:-translate-y-4 border border-gray-100 dark:border-gray-700 ${animationClass} ${className}`;
+---
+
+{href ? (
+  <a {href} class={classes} style={style}>
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-600/0 via-purple-600/0
+      to-pink-600/0 group-hover:from-blue-600/10 group-hover:via-purple-600/10
+      group-hover:to-pink-600/10 transition-all duration-500 z-10"></div>
+    <slot />
+  </a>
+) : (
+  <div class={classes} style={style}>
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-600/0 via-purple-600/0
+      to-pink-600/0 group-hover:from-blue-600/10 group-hover:via-purple-600/10
+      group-hover:to-pink-600/10 transition-all duration-500 z-10"></div>
+    <slot />
+  </div>
+)}

@@ -1,0 +1,29 @@
+---
+// Tech Stack sekce
+---
+
+<section class="bg-white/50 dark:bg-gray-900/50 backdrop-blur-lg py-12 sm:py-20 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-8 sm:mb-12 animate-fade-in-up">
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black mb-4 text-gray-900 dark:text-white leading-[1.2]">
+        Tech Stack
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300 text-lg sm:text-xl px-4 leading-relaxed animate-fade-in-up" style="animation-delay: 0.1s;">Technologie, které denně používám</p>
+    </div>
+
+    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 sm:gap-8">
+      {['⚛️ React', '▲ Next.js', '🚀 Astro', '📘 TypeScript', '🎨 Tailwind', '🔥 Sanity'].map((tech, index) => {
+        const [emoji, name] = tech.split(' ');
+        return (
+          <div
+            class="group flex flex-col items-center justify-center p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-2xl hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/50 dark:hover:to-purple-900/50 transition-all duration-500 hover:scale-125 hover:-translate-y-2 cursor-pointer shadow-md hover:shadow-xl animate-scale-in border border-gray-100 dark:border-gray-700"
+            style={`animation-delay: ${index * 0.1}s;`}
+          >
+            <div class="text-4xl sm:text-5xl mb-2 sm:mb-3 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">{emoji}</div>
+            <div class="font-bold text-xs sm:text-sm text-gray-700 dark:text-gray-300 text-center">{name}</div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

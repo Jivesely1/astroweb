@@ -1,0 +1,61 @@
+---
+import Button from '../common/Button.astro';
+---
+
+<section class="relative overflow-hidden min-h-screen flex items-center">
+  <!-- Animated Background Blobs -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
+    <div class="absolute top-40 right-10 w-72 h-72 bg-gradient-to-br from-purple-400 to-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float" style="animation-delay: 1s;"></div>
+    <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-gradient-to-br from-pink-400 to-red-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float" style="animation-delay: 2s;"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+    <div class="text-center">
+      <!-- Badge s animací -->
+      <div class="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-sm sm:text-base font-semibold mb-6 sm:mb-8 shadow-lg animate-glow animate-scale-in">
+        <span class="animate-pulse mr-2 text-lg sm:text-xl">🚀</span>
+        <span class="hidden sm:inline">Volný pro nové projekty</span>
+        <span class="sm:hidden">Dostupný</span>
+      </div>
+
+      <!-- Hlavní nadpis s gradientní animací -->
+      <div class="mb-8 sm:mb-12 animate-slide-in-left">
+        <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.3]">
+          <span class="block bg-gradient-to-r from-gray-900 via-purple-900 to-pink-900 dark:from-gray-100 dark:via-purple-300 dark:to-pink-300 bg-clip-text text-transparent pb-4 sm:pb-5 mb-3 sm:mb-4">
+            Tvořím web,
+          </span>
+          <span class="block bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 dark:from-purple-400 dark:via-pink-400 dark:to-red-400 bg-clip-text text-transparent pb-4 sm:pb-5">
+            který prodává
+          </span>
+        </h1>
+      </div>
+
+      <!-- Podnadpis s animací -->
+      <p class="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-in-right px-4 mt-6">
+        Freelance vývojář s vášní pro detail. Specializuji se na
+        <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 hover:scale-110 inline-block transition-transform">blazing fast weby</span>,
+        které nepřehlédnete a které
+        <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 hover:scale-110 inline-block transition-transform">konvertují</span>.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 animate-fade-in-up" style="animation-delay: 0.3s;">
+        <Button href="/kontakt" size="lg" icon="🎯">
+          Začněme projekt
+        </Button>
+
+        <Button href="/projekty" variant="secondary" size="lg" icon="→">
+          Prohlédnout práci
+        </Button>
+      </div>
+
+      <!-- Scrolling indicator -->
+      <div class="mt-12 sm:mt-20 animate-bounce">
+        <div class="w-8 h-12 border-2 border-gray-400 dark:border-gray-600 rounded-full mx-auto flex items-start justify-center p-2">
+          <div class="w-1 h-3 bg-gradient-to-b from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 rounded-full animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

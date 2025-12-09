@@ -1,0 +1,128 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const services = [
+  {
+    icon: '🌐',
+    title: 'Tvorba webových stránek',
+    description: 'Responzivní weby s moderním designem, optimalizované pro SEO a rychlost načítání.',
+    features: ['Responzivní design', 'SEO optimalizace', 'Rychlé načítání', 'CMS integrace']
+  },
+  {
+    icon: '⚡',
+    title: 'Webové aplikace',
+    description: 'Komplexní SaaS aplikace, dashboardy a nástroje postavené na React a Next.js.',
+    features: ['React/Next.js', 'Real-time funkce', 'API integrace', 'Autentizace']
+  },
+  {
+    icon: '🛒',
+    title: 'E-commerce řešení',
+    description: 'Plně funkční e-shopy s platebními branami a administračním rozhraním.',
+    features: ['Shopify/WooCommerce', 'Platební brány', 'Správa produktů', 'Analytika']
+  },
+  {
+    icon: '🔧',
+    title: 'Údržba a podpora',
+    description: 'Pravidelná údržba, aktualizace a technická podpora vašich webových projektů.',
+    features: ['Pravidelné aktualizace', 'Bug fixing', 'Performance monitoring', '24/7 podpora']
+  },
+  {
+    icon: '🎨',
+    title: 'UI/UX Design',
+    description: 'Návrh uživatelského rozhraní s důrazem na použitelnost a moderní trendy.',
+    features: ['Wireframy', 'Prototypy', 'Design systémy', 'User testing']
+  },
+  {
+    icon: '📱',
+    title: 'Mobilní optimalizace',
+    description: 'Zajištění perfektní funkčnosti a vzhledu na všech mobilních zařízeních.',
+    features: ['Mobile-first přístup', 'Touch optimalizace', 'PWA', 'App-like experience']
+  }
+];
+---
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Služby - Jiří Veselý</title>
+  <ViewTransitions />
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
+  <Header />
+  
+  <main class="max-w-6xl mx-auto px-4 py-20">
+    <div class="text-center mb-16 animate-fade-in-up">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-[1.3]">
+        <span class="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent pb-4 sm:pb-5">
+          Co nabízím
+        </span>
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        Komplexní řešení pro vaše webové projekty. Od prvního návrhu až po finální spuštění a následnou podporu.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {services.map((service, index) => (
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-sm hover:shadow-md transition animate-fade-in-up border border-gray-100 dark:border-gray-700" style={`animation-delay: ${index * 0.15}s;`}>
+          <div class="text-5xl mb-4">{service.icon}</div>
+          <h2 class="text-2xl font-bold mb-3 leading-none dark:text-white">{service.title}</h2>
+          <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{service.description}</p>
+          <ul class="space-y-2">
+            {service.features.map(feature => (
+              <li class="flex items-center text-gray-700 dark:text-gray-300">
+                <span class="text-green-500 mr-2">✓</span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Proces Section -->
+    <section class="mt-20">
+      <h2 class="text-4xl font-bold text-center mb-12 leading-none animate-fade-in-up dark:text-white">Jak probíhá spolupráce</h2>
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center animate-fade-in-up" style="animation-delay: 0.15s;">
+          <div class="bg-blue-100 dark:bg-blue-900/30 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-blue-600 dark:text-blue-400 mx-auto mb-4">1</div>
+          <h3 class="font-bold mb-2 dark:text-white">Konzultace</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">Probereme vaše požadavky a cíle projektu</p>
+        </div>
+        <div class="text-center animate-fade-in-up" style="animation-delay: 0.3s;">
+          <div class="bg-blue-100 dark:bg-blue-900/30 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-blue-600 dark:text-blue-400 mx-auto mb-4">2</div>
+          <h3 class="font-bold mb-2 dark:text-white">Návrh</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">Vytvoření konceptu a technického řešení</p>
+        </div>
+        <div class="text-center animate-fade-in-up" style="animation-delay: 0.45s;">
+          <div class="bg-blue-100 dark:bg-blue-900/30 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-blue-600 dark:text-blue-400 mx-auto mb-4">3</div>
+          <h3 class="font-bold mb-2 dark:text-white">Vývoj</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">Realizace projektu s pravidelnými updates</p>
+        </div>
+        <div class="text-center animate-fade-in-up" style="animation-delay: 0.6s;">
+          <div class="bg-blue-100 dark:bg-blue-900/30 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-blue-600 dark:text-blue-400 mx-auto mb-4">4</div>
+          <h3 class="font-bold mb-2 dark:text-white">Spuštění</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">Deploy a následná podpora</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="mt-20 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700 rounded-2xl p-12 text-center text-white animate-fade-in-up" style="animation-delay: 0.75s;">
+      <h2 class="text-3xl font-bold mb-4 leading-none">Zajímá vás některá služba?</h2>
+      <p class="text-xl mb-8 text-blue-100 dark:text-blue-200 leading-relaxed">
+        Napište mi a domluvíme si nezávaznou konzultaci.
+      </p>
+      <a href="/kontakt" class="bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 transition inline-block">
+        Kontaktovat
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</body>
+</html>

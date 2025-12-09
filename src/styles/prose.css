@@ -1,0 +1,127 @@
+/* ============================================
+   BLOG PROSE STYLES
+   Typography and content styling for blog posts
+   ============================================ */
+
+.prose {
+  max-width: 75ch;
+  color: #1f2937;
+}
+
+.prose h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.prose h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, #667eea, #764ba2);
+  border-radius: 3px;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #4f46e5;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.prose h3::before {
+  content: "▸";
+  color: #8b5cf6;
+  font-size: 1.2em;
+}
+
+.prose p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  font-size: 1.125rem;
+  color: #374151;
+}
+
+.prose strong {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.prose a {
+  color: #7c3aed;
+  border-bottom: 2px solid #c4b5fd;
+  font-weight: 600;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.prose a:hover {
+  padding: 0 4px;
+  background: #f5f3ff;
+  border-bottom-color: #7c3aed;
+}
+
+.prose ul,
+.prose ol {
+  margin: 1.5rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.prose li {
+  margin: 1rem 0;
+  padding-left: 2rem;
+  position: relative;
+  line-height: 1.8;
+}
+
+.prose li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  background: #d1fae5;
+  color: #10b981;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  font-size: .875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prose code {
+  background: #fee2e2;
+  padding: .25rem .5rem;
+  border-radius: .375rem;
+  font-size: .875rem;
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.prose blockquote {
+  border-left: 4px solid #8b5cf6;
+  background: linear-gradient(135deg, #f5f3ff, #fae8ff);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: .5rem;
+  color: #6d28d9;
+  font-style: italic;
+}
