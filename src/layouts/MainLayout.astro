@@ -31,10 +31,23 @@ const siteTitle = title ? `${title} - Jiří Veselý` : 'Jiří Veselý - Freela
 
   <!-- Apply theme immediately to prevent flash -->
   <script is:inline>
+    // Apply theme immediately
     const theme = localStorage.getItem('theme') || 'light';
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
+
+    // Also apply after view transitions
+    document.addEventListener('astro:after-swap', () => {
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      if (currentTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    });
   </script>
 
   <!-- Open Graph / Facebook -->
