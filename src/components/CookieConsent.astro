@@ -44,7 +44,7 @@
   </div>
 </div>
 
-<script>
+<script is:inline>
   function initCookieConsent() {
     const banner = document.getElementById('cookie-consent');
     const acceptBtn = document.getElementById('cookie-accept');
@@ -52,8 +52,41 @@
 
     if (!banner || !acceptBtn || !declineBtn) return;
 
+    // Helper function to safely access storage
+    function getStorageItem(key) {
+      try {
+        // Try localStorage first
+        const localValue = localStorage.getItem(key);
+        if (localValue) return localValue;
+
+        // Fallback to sessionStorage (for incognito mode)
+        const sessionValue = sessionStorage.getItem(key);
+        return sessionValue;
+      } catch (e) {
+        // If localStorage is not available (some browsers in incognito mode)
+        try {
+          return sessionStorage.getItem(key);
+        } catch (e2) {
+          return null;
+        }
+      }
+    }
+
+    function setStorageItem(key, value) {
+      try {
+        localStorage.setItem(key, value);
+      } catch (e) {
+        // Fallback to sessionStorage if localStorage fails
+        try {
+          sessionStorage.setItem(key, value);
+        } catch (e2) {
+          console.warn('Storage not available');
+        }
+      }
+    }
+
     // Check if user has already made a choice
-    const cookieConsent = localStorage.getItem('cookie-consent');
+    const cookieConsent = getStorageItem('cookie-consent');
 
     if (!cookieConsent) {
       // Show banner after a short delay
@@ -62,26 +95,34 @@
       }, 1000);
     }
 
-    // Accept cookies
-    acceptBtn.addEventListener('click', () => {
-      localStorage.setItem('cookie-consent', 'accepted');
-      banner.classList.add('translate-y-full');
+    // Remove old event listeners by cloning buttons
+    const newAcceptBtn = acceptBtn.cloneNode(true);
+    acceptBtn.parentNode.replaceChild(newAcceptBtn, acceptBtn);
 
-      // Here you can enable analytics, tracking, etc.
+    const newDeclineBtn = declineBtn.cloneNode(true);
+    declineBtn.parentNode.replaceChild(newDeclineBtn, declineBtn);
+
+    // Accept cookies
+    newAcceptBtn.addEventListener('click', () => {
+      setStorageItem('cookie-consent', 'accepted');
+      banner.classList.add('translate-y-full');
       console.log('Cookies accepted');
     });
 
     // Decline cookies
-    declineBtn.addEventListener('click', () => {
-      localStorage.setItem('cookie-consent', 'declined');
+    newDeclineBtn.addEventListener('click', () => {
+      setStorageItem('cookie-consent', 'declined');
       banner.classList.add('translate-y-full');
-
       console.log('Cookies declined');
     });
   }
 
   // Initialize on page load
-  initCookieConsent();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookieConsent);
+  } else {
+    initCookieConsent();
+  }
 
   // Re-initialize after view transitions
   document.addEventListener('astro:page-load', () => {
