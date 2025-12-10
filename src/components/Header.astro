@@ -125,18 +125,22 @@ const currentPath = Astro.url.pathname;
   </nav>
 </header>
 
-<script>
+<script is:inline>
   function initMobileMenu() {
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
 
     if (btn && menu) {
-      btn.addEventListener('click', () => {
-        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      // Remove old listener by cloning
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+
+      newBtn.addEventListener('click', () => {
+        const isExpanded = newBtn.getAttribute('aria-expanded') === 'true';
 
         menu.classList.toggle('hidden');
-        btn.setAttribute('aria-expanded', (!isExpanded).toString());
-        btn.setAttribute('aria-label', !isExpanded ? 'Zavřít menu' : 'Otevřít menu');
+        newBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+        newBtn.setAttribute('aria-label', !isExpanded ? 'Zavřít menu' : 'Otevřít menu');
       });
     }
   }
@@ -167,8 +171,12 @@ const currentPath = Astro.url.pathname;
     // Initialize UI
     updateMobileThemeUI();
 
+    // Remove old listener by cloning
+    const newBtn = mobileThemeBtn.cloneNode(true);
+    mobileThemeBtn.parentNode.replaceChild(newBtn, mobileThemeBtn);
+
     // Handle click
-    mobileThemeBtn.addEventListener('click', () => {
+    newBtn.addEventListener('click', () => {
       if (window.handleThemeToggle) {
         window.handleThemeToggle();
         updateMobileThemeUI();
