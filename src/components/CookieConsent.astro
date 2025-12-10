@@ -1,0 +1,90 @@
+---
+// Cookie Consent Banner Component
+---
+
+<div
+  id="cookie-consent"
+  class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t-2 border-purple-600 shadow-2xl z-50 transform translate-y-full transition-transform duration-300"
+  role="dialog"
+  aria-labelledby="cookie-consent-title"
+  aria-describedby="cookie-consent-description"
+>
+  <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="flex-1">
+        <h3 id="cookie-consent-title" class="text-lg font-bold mb-2 dark:text-white">
+          🍪 Používáme cookies
+        </h3>
+        <p id="cookie-consent-description" class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+          Tento web používá cookies pro zlepšení uživatelského zážitku a analytiku.
+          Kliknutím na "Přijmout" souhlasíte s používáním všech cookies.
+          <a href="/ochrana-soukromi" class="text-purple-600 dark:text-purple-400 hover:underline ml-1">
+            Více informací
+          </a>
+        </p>
+      </div>
+
+      <div class="flex gap-3 w-full sm:w-auto">
+        <button
+          id="cookie-decline"
+          class="flex-1 sm:flex-none px-4 py-2.5 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          aria-label="Odmítnout cookies"
+        >
+          Odmítnout
+        </button>
+        <button
+          id="cookie-accept"
+          class="flex-1 sm:flex-none px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
+          aria-label="Přijmout cookies"
+        >
+          Přijmout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initCookieConsent() {
+    const banner = document.getElementById('cookie-consent');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const declineBtn = document.getElementById('cookie-decline');
+
+    if (!banner || !acceptBtn || !declineBtn) return;
+
+    // Check if user has already made a choice
+    const cookieConsent = localStorage.getItem('cookie-consent');
+
+    if (!cookieConsent) {
+      // Show banner after a short delay
+      setTimeout(() => {
+        banner.classList.remove('translate-y-full');
+      }, 1000);
+    }
+
+    // Accept cookies
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'accepted');
+      banner.classList.add('translate-y-full');
+
+      // Here you can enable analytics, tracking, etc.
+      console.log('Cookies accepted');
+    });
+
+    // Decline cookies
+    declineBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'declined');
+      banner.classList.add('translate-y-full');
+
+      console.log('Cookies declined');
+    });
+  }
+
+  // Initialize on page load
+  initCookieConsent();
+
+  // Re-initialize after view transitions
+  document.addEventListener('astro:page-load', () => {
+    initCookieConsent();
+  });
+</script>

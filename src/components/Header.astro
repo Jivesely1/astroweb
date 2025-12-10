@@ -34,7 +34,7 @@ const currentPath = Astro.url.pathname;
         <li>
           <a
             href="/"
-            class={`font-medium transition-all duration-300 hover:scale-110 inline-block ${currentPath === '/' ? 'text-purple-600 font-bold' : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'}`}
+            class={`font-medium transition-all duration-300 hover:scale-110 inline-block ${currentPath === '/' ? 'text-purple-600 dark:text-purple-400 font-bold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'}`}
           >
             Domů
           </a>
@@ -42,7 +42,7 @@ const currentPath = Astro.url.pathname;
         <li>
           <a
             href="/sluzby"
-            class={`font-medium transition-all duration-300 hover:scale-110 inline-block ${currentPath === '/sluzby' ? 'text-purple-600 font-bold' : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'}`}
+            class={`font-medium transition-all duration-300 hover:scale-110 inline-block ${currentPath.startsWith('/sluzby') ? 'text-purple-600 dark:text-purple-400 font-bold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'}`}
           >
             Služby
           </a>
@@ -50,7 +50,7 @@ const currentPath = Astro.url.pathname;
         <li>
           <a
             href="/projekty"
-            class={`font-medium transition-all duration-300 hover:scale-110 inline-block ${currentPath === '/projekty' ? 'text-purple-600 font-bold' : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'}`}
+            class={`font-medium transition-all duration-300 hover:scale-110 inline-block ${currentPath.startsWith('/projekty') ? 'text-purple-600 dark:text-purple-400 font-bold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'}`}
           >
             Portfolio
           </a>
@@ -58,7 +58,7 @@ const currentPath = Astro.url.pathname;
         <li>
           <a
             href="/blog"
-            class={`font-medium transition-all duration-300 hover:scale-110 inline-block ${currentPath.startsWith('/blog') ? 'text-purple-600 font-bold' : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'}`}
+            class={`font-medium transition-all duration-300 hover:scale-110 inline-block ${currentPath.startsWith('/blog') ? 'text-purple-600 dark:text-purple-400 font-bold' : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'}`}
           >
             Blog
           </a>
