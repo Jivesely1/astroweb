@@ -15,11 +15,9 @@
   </svg>
 </button>
 
-<script>
-  // Variable to track if listener is already attached
-  let themeListenerAttached = false;
-
-  function updateThemeIcons() {
+<script is:inline>
+  // Global function to update theme icons
+  window.updateThemeIcons = function() {
     const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
     const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
 
@@ -34,9 +32,10 @@
       themeToggleLightIcon.classList.add('hidden');
       themeToggleDarkIcon.classList.remove('hidden');
     }
-  }
+  };
 
-  function handleThemeToggle() {
+  // Global function to handle theme toggle
+  window.handleThemeToggle = function() {
     document.documentElement.classList.toggle('dark');
 
     if (document.documentElement.classList.contains('dark')) {
@@ -45,26 +44,32 @@
       localStorage.setItem('theme', 'light');
     }
 
-    updateThemeIcons();
-  }
+    window.updateThemeIcons();
+  };
 
+  // Initialize theme toggle
   function initTheme() {
     const themeToggleBtn = document.getElementById('theme-toggle');
 
     if (!themeToggleBtn) return;
 
-    // Update icons based on current theme
-    updateThemeIcons();
+    // Remove any existing listeners
+    const newBtn = themeToggleBtn.cloneNode(true);
+    themeToggleBtn.parentNode.replaceChild(newBtn, themeToggleBtn);
 
-    // Only attach listener once
-    if (!themeListenerAttached) {
-      themeToggleBtn.addEventListener('click', handleThemeToggle);
-      themeListenerAttached = true;
-    }
+    // Update icons based on current theme
+    window.updateThemeIcons();
+
+    // Attach new listener
+    newBtn.addEventListener('click', window.handleThemeToggle);
   }
 
   // Initialize on page load
-  initTheme();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTheme);
+  } else {
+    initTheme();
+  }
 
   // Re-initialize after view transitions
   document.addEventListener('astro:page-load', () => {
