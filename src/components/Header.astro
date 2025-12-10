@@ -177,8 +177,15 @@ const currentPath = Astro.url.pathname;
   }
 
   // Initialize on page load
-  initMobileMenu();
-  initMobileThemeToggle();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initMobileMenu();
+      initMobileThemeToggle();
+    });
+  } else {
+    initMobileMenu();
+    initMobileThemeToggle();
+  }
 
   // Re-initialize after view transitions
   document.addEventListener('astro:page-load', () => {
