@@ -79,16 +79,28 @@ const currentPath = Astro.url.pathname;
     
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3">
-      <a href="/" class="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-gray-800 hover:text-purple-600 rounded-lg transition-all duration-300 font-medium">
+      <a
+        href="/"
+        class={`block px-4 py-2 rounded-lg transition-all duration-300 font-medium ${currentPath === '/' ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-gray-800 font-bold' : 'text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-gray-800 hover:text-purple-600 dark:hover:text-purple-400'}`}
+      >
         Domů
       </a>
-      <a href="/sluzby" class="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-gray-800 hover:text-purple-600 rounded-lg transition-all duration-300 font-medium">
+      <a
+        href="/sluzby"
+        class={`block px-4 py-2 rounded-lg transition-all duration-300 font-medium ${currentPath.startsWith('/sluzby') ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-gray-800 font-bold' : 'text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-gray-800 hover:text-purple-600 dark:hover:text-purple-400'}`}
+      >
         Služby
       </a>
-      <a href="/projekty" class="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-gray-800 hover:text-purple-600 rounded-lg transition-all duration-300 font-medium">
+      <a
+        href="/projekty"
+        class={`block px-4 py-2 rounded-lg transition-all duration-300 font-medium ${currentPath.startsWith('/projekty') ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-gray-800 font-bold' : 'text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-gray-800 hover:text-purple-600 dark:hover:text-purple-400'}`}
+      >
         Portfolio
       </a>
-      <a href="/blog" class="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-gray-800 hover:text-purple-600 rounded-lg transition-all duration-300 font-medium">
+      <a
+        href="/blog"
+        class={`block px-4 py-2 rounded-lg transition-all duration-300 font-medium ${currentPath.startsWith('/blog') ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-gray-800 font-bold' : 'text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-gray-800 hover:text-purple-600 dark:hover:text-purple-400'}`}
+      >
         Blog
       </a>
       <div class="flex justify-center py-2">
