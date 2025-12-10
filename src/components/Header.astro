@@ -17,8 +17,14 @@ const currentPath = Astro.url.pathname;
       </a>
       
       <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        aria-label="Otevřít menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
@@ -102,7 +108,11 @@ const currentPath = Astro.url.pathname;
 
     if (btn && menu) {
       btn.addEventListener('click', () => {
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
         menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', (!isExpanded).toString());
+        btn.setAttribute('aria-label', !isExpanded ? 'Zavřít menu' : 'Otevřít menu');
       });
     }
   }

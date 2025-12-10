@@ -1,7 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import MainLayout from '../layouts/MainLayout.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
 import StatsSection from '../components/sections/StatsSection.astro';
 import FeaturedProjectsSection from '../components/sections/FeaturedProjectsSection.astro';
@@ -24,24 +22,14 @@ const projects = await client.fetch(`
 `);
 ---
 
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jiří Veselý - Freelance Vývojář</title>
-  <ViewTransitions />
-</head>
-<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-x-hidden transition-colors duration-300">
-  <Header />
-
+<MainLayout
+  title="Domů"
+  description="Freelance vývojář specializující se na moderní webové aplikace. Tvorba rychlých a responzivních webů s React, Next.js a Astro."
+>
   <HeroSection />
   <StatsSection />
   <FeaturedProjectsSection projects={projects} />
   <ServicesSection />
   <TechStackSection />
   <CTASection />
-
-  <Footer />
-</body>
-</html>
+</MainLayout>

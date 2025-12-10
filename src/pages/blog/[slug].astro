@@ -1,7 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
 import { client, urlFor } from '../../lib/sanity';
 import { PortableText } from 'astro-portabletext';
 
@@ -52,21 +50,11 @@ const wordCount = plain.split(/\s+/).filter(Boolean).length;
 const readTime = Math.max(1, Math.ceil(wordCount / 200));
 ---
 
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{post.title} - Blog</title>
-  <meta name="description" content={post.excerpt || post.title} />
-  <ViewTransitions />
-</head>
-
-<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-
+<MainLayout
+  title={post.title}
+  description={post.excerpt || post.title}
+>
   <div id="reading-progress" class="reading-progress"></div>
-
-  <Header />
 
   <!-- 🔥 UPRAVENÝ PADDING – obsah je nyní mnohem blíže k menu -->
   <article class="max-w-5xl mx-auto px-4 pt-10 sm:pt-14 md:pt-16 pb-12 sm:pb-20">
@@ -131,9 +119,10 @@ const readTime = Math.max(1, Math.ceil(wordCount / 200));
 
       {post.mainImage && (
         <div class="rounded-3xl overflow-hidden shadow-2xl mb-12 border-4 border-white relative group">
-          <img 
+          <img
             src={urlFor(post.mainImage).width(1200).url()}
             alt={post.mainImage.alt || post.title}
+            loading="lazy"
             class="w-full object-cover transform group-hover:scale-105 transition-transform duration-700"
           />
         </div>
@@ -157,8 +146,6 @@ const readTime = Math.max(1, Math.ceil(wordCount / 200));
 
   </article>
 
-  <Footer />
-
   <script>
     window.addEventListener('scroll', () => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -168,6 +155,4 @@ const readTime = Math.max(1, Math.ceil(wordCount / 200));
       if (bar) bar.style.width = scrolled + '%';
     });
   </script>
-
-</body>
-</html>
+</MainLayout>

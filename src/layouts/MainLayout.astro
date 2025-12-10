@@ -1,0 +1,57 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage = '/og-image.jpg',
+  canonicalUrl = Astro.url.href
+} = Astro.props;
+
+const siteTitle = title ? `${title} - Jiří Veselý` : 'Jiří Veselý - Freelance Vývojář';
+---
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{siteTitle}</title>
+  <meta name="description" content={description}>
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonicalUrl}>
+  <meta property="og:title" content={siteTitle}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={new URL(ogImage, Astro.url).href}>
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content={canonicalUrl}>
+  <meta name="twitter:title" content={siteTitle}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={new URL(ogImage, Astro.url).href}>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonicalUrl}>
+
+  <ViewTransitions />
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-x-hidden transition-colors duration-300">
+  <Header />
+
+  <slot />
+
+  <Footer />
+</body>
+</html>
